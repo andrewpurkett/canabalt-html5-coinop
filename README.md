@@ -29,10 +29,10 @@ Then i decided it's not going to be prettier than this version. So i switched to
 ## Play
 To play run:
 
-    `grunt serve`
+    grunt serve
 
 and open up your browser at:
 
-    `open localhost:9000`
+    open localhost:9000
 
 jump is mapped to the `Z` key
