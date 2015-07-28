@@ -19,7 +19,9 @@ Then i decided it's not going to be prettier than this version. So i switched to
 2. Install bower, grunt, and any other missing dependencies using npm:
 
     `npm install grunt`
+    
     `npm install grunt-cli`
+    
     `npm install bower`
 
 3. Configure bower to download the needed JS libraries
