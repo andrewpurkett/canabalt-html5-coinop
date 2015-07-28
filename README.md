@@ -14,21 +14,25 @@ Then i decided it's not going to be prettier than this version. So i switched to
 ## Installation
 1. Install node package manager (npm). On OSX, this is most easily accomplished with brew:
 
-`brew install npm`
+    `brew install npm`
 
 2. Install bower, grunt, and any other missing dependencies using npm:
-`npm install grunt`
-`npm install grunt-cli`
-`npm install bower`
+
+    `npm install grunt`
+    `npm install grunt-cli`
+    `npm install bower`
 
 3. Configure bower to download the needed JS libraries
-`bower update`
+
+    `bower update`
 
 ## Play
 To play run:
-`grunt serve`
+
+    `grunt serve`
 
 and open up your browser at:
-`open localhost:9000`
+
+    `open localhost:9000`
 
 jump is mapped to the `Z` key
