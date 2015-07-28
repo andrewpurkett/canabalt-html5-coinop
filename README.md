@@ -1,8 +1,6 @@
-canabalt-html5
+canabalt-html5-coinop
 ==============
-First serious game development experience for 1 month.
-I inspired by and followed the [pixi scroller tutorials](http://www.yeahbutisitflash.com/?p=5226)
-I tried to clone [canabalt-ios](https://github.com/ericjohnson/canabalt-ios)
+Building on the work in [canabalt-html5](https://github.com/eguneys/canabalt-html5), this is a version of canabalt that can run inside an arcade machine, running on a RaspberryPi, and accept coins. A lot of work remains on the project.
 
 ## Story
 
