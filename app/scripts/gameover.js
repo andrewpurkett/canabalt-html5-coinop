@@ -59,19 +59,31 @@ function GameOver(width, height, distance, player) {
 
 	this.addChild(creditCountText);
 
-	var retryText = (window.credits.ready()) ? 'Press start to retry your daring escape.' : 'Insert coin to retry your daring escape.';
-
-	var t = new PIXI.Text(retryText,
+	var restartGameText = new PIXI.Text('Loading...',
 						 {
 							 font: '16px Flixel',
 							 fill: '#ffffff',
 							 align: 'right',
 						 });
-	t.x = 10;
-	t.y = height - 25;
+	restartGameText.x = 10;
+	restartGameText.y = height - 25;
 
-	this.addChild(t);
+	this.addChild(restartGameText);
+
+	setInterval(this.updateCreditCount.bind(creditCountText), 100);
+	setInterval(this.updateRestartText.bind(restartGameText), 100);
 };
 
 GameOver.constructor = GameOver;
 GameOver.prototype = Object.create(PIXI.DisplayObjectContainer.prototype);
+
+
+GameOver.prototype.updateRestartText = function() {
+	this.setText((window.credits.ready()) ?
+		'Press start to retry your daring escape.':
+		'Insert coin to retry your daring escape.');
+}
+
+GameOver.prototype.updateCreditCount = function() {
+	this.setText("Credits: " + window.credits.count());
+}
