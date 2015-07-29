@@ -2,7 +2,7 @@
 
 function Main() {
 	window.credits.use();
-	console.log("Credits", window.credits.count());
+	console.log("Game started, remaining credits:", window.credits.count());
 
 	this.stage = new PIXI.Stage(0xffb0b0bf);
 	this.renderer =  PIXI.autoDetectRenderer(1024, 512, $('#game-canvas')[0]);
@@ -61,8 +61,6 @@ Main.prototype.restart = function() {
 	if ( ! window.credits.ready()) {
 		console.log("No credits!");
 		return;
-	} else {
-		console.log("Got " + window.credits.count() + " credits when trying to restart");
 	}
 
 	window.main = new Main();

@@ -41,6 +41,5 @@ Coin.prototype.count = function() {
 }
 
 Coin.prototype.bindKeyHandlers = function() {
-	that = this;
-	kd.SHIFT.up(function() { that.insert(); });
+	kd.SHIFT.up(this.insert.bind(this));
 }
