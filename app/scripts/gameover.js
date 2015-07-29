@@ -72,6 +72,10 @@ function GameOver(width, height, distance, player) {
 
 	setInterval(this.updateCreditCount.bind(creditCountText), 100);
 	setInterval(this.updateRestartText.bind(restartGameText), 100);
+
+	GameGlobal.SoundPlayer.music.stop()
+	// Play random song
+	GameGlobal.SoundPlayer.music.play(['daringescape-title', 'machrunner-title', 'run-title'][new Date%3]);
 };
 
 GameOver.constructor = GameOver;

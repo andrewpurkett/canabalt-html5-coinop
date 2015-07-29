@@ -30,6 +30,7 @@ Main.prototype.loadSpriteSheet = function() {
 
 Main.prototype.soundsLoaded = function() {
 	this.loadSpriteSheet();
+	GameGlobal.SoundPlayer.music.play(['daringescape', 'machrunner', 'run'][new Date%3]);
 };
 
 Main.prototype.spriteSheetLoaded = function() {

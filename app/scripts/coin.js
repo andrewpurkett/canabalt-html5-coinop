@@ -6,8 +6,16 @@ function Coin() {
 
 Coin.prototype.insert = function() {
 	console.log("credit added");
+
 	if (this.coinCount < 99) {
 		this.coinCount++;
+	}
+
+	// Play a different sound for first coin
+	if (this.coinCount == 1) {
+		GameGlobal.SoundPlayer.sound.play('giant_leg');
+	} else {
+		GameGlobal.SoundPlayer.sound.play('obstacle3');
 	}
 }
 
