@@ -24,4 +24,7 @@ and open up your browser at:
 
     open localhost:9000
 
-jump is mapped to the `Space` key, insert coin is mapped to the 'Shift' key, start game is mapped to the 'Enter' key
+## Controls
+jump is mapped to the `Space` key
+insert coin is mapped to the `Shift` key
+start game is mapped to the `Enter` key
