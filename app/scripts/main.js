@@ -30,6 +30,8 @@ Main.prototype.loadSpriteSheet = function() {
 
 Main.prototype.soundsLoaded = function() {
 	this.loadSpriteSheet();
+
+	GameGlobal.SoundPlayer.music.stop();
 	GameGlobal.SoundPlayer.music.play(['daringescape', 'machrunner', 'run'][new Date%3]);
 };
 
@@ -64,6 +66,9 @@ Main.prototype.restart = function() {
 		return;
 	}
 
+	kd.ENTER.unbindDown();
+
+	GameGlobal.SoundPlayer.music.unload();
 	window.main = new Main();
 	PIXI = new PIXI();
 }

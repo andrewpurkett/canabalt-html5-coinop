@@ -104,6 +104,7 @@ PlayState.prototype.update = function() {
 		this.gameOver = new GameOver(this.width / this.zoom, this.height / this.zoom, distance, this.player);
 
 		kd.ENTER.down(function (){
+			GameGlobal.SoundPlayer.music.stop();
 			window.main.restart();
 		});
 
