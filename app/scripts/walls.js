@@ -1,96 +1,96 @@
 'use strict';
 
 function WallSlice(type, y, options) {
-    this.type = type;
-    this.y = y;
-    this.sprite = null;
+	this.type = type;
+	this.y = y;
+	this.sprite = null;
 
-    var defaults = {
-        width: WallSlice.WIDTH,
-        offsetX: 0,
-        scale: {
-            x: WallSlice.SCALE,
-            y: WallSlice.SCALE
-        },
-        anchor: {
-            x: 0,
-            y: 0
-        }
-    };
+	var defaults = {
+		width: WallSlice.WIDTH,
+		offsetX: 0,
+		scale: {
+			x: WallSlice.SCALE,
+			y: WallSlice.SCALE
+		},
+		anchor: {
+			x: 0,
+			y: 0
+		}
+	};
 
-    options = options || defaults;
+	options = options || defaults;
 
-    this.options = $.extend({}, defaults, options);
-    
-    this.width = this.options.width;
-    this.offsetX = this.options.offsetX;
-    this.scale = this.options.scale;
-    this.anchor = this.options.anchor;
+	this.options = $.extend({}, defaults, options);
+
+	this.width = this.options.width;
+	this.offsetX = this.options.offsetX;
+	this.scale = this.options.scale;
+	this.anchor = this.options.anchor;
 }
 
 WallSlice.prototype.initDisplay = function(offset, index, y) {
-    this.sprite = GameGlobal.PoolKeeper.borrowWallSprite(this.type);
-    
-    this.sprite.scale.x = this.scale.x;
-    this.sprite.scale.y = this.scale.y;
+	this.sprite = GameGlobal.PoolKeeper.borrowWallSprite(this.type);
 
-    this.sprite.anchor = this.anchor;
-    
-    this.sprite.position.x = offset + (index * WallSlice.WIDTH) + this.offsetX;
-    this.sprite.position.y = this.y + y;
+	this.sprite.scale.x = this.scale.x;
+	this.sprite.scale.y = this.scale.y;
+
+	this.sprite.anchor = this.anchor;
+
+	this.sprite.position.x = offset + (index * WallSlice.WIDTH) + this.offsetX;
+	this.sprite.position.y = this.y + y;
 };
 
 WallSlice.prototype.updateDisplay = function(offset, index, y) {
-    this.sprite.position.x = offset + (index * WallSlice.WIDTH)+ this.offsetX;
+	this.sprite.position.x = offset + (index * WallSlice.WIDTH)+ this.offsetX;
 
-    this.sprite.position.y = this.y + y;
+	this.sprite.position.y = this.y + y;
 };
 
 WallSlice.prototype.removeDisplay = function() {
-    GameGlobal.PoolKeeper.returnWallSprite(this.type, this.sprite);
-    this.sprite = null;
+	GameGlobal.PoolKeeper.returnWallSprite(this.type, this.sprite);
+	this.sprite = null;
 };
 
 WallSlice.prototype.checkCollision = function(player, shards) {
-    var hitRoof = this.type < SliceType.WALL_RIGHT;
-    var hitFloor = this.type >= SliceType.FLOOR_LEFT && this.type <= SliceType.FLOOR_RIGHT + 2;
-    var hitCrane = this.type >= SliceType.CRANE1_LEFT && this.type <= SliceType.CRANE1_RIGHT;
+	var hitRoof = this.type < SliceType.WALL_RIGHT;
+	var hitFloor = this.type >= SliceType.FLOOR_LEFT && this.type <= SliceType.FLOOR_RIGHT + 2;
+	var hitCrane = this.type >= SliceType.CRANE1_LEFT && this.type <= SliceType.CRANE1_RIGHT;
 
-    var hitWallLeft = this.type >= SliceType.WALL_LEFT && this.type < SliceType.WALL_LEFT + 5;
-    
-    var xdist;
+	var hitWallLeft = this.type >= SliceType.WALL_LEFT && this.type < SliceType.WALL_LEFT + 5;
 
-    if (hitRoof || hitFloor || hitCrane || hitWallLeft) {
-        if (player.position.y >= this.sprite.position.y - player.height && player.position.y <= this.sprite.position.y + this.sprite.height) {
-            xdist = player.position.x - this.sprite.position.x;
-            if (xdist > 0 && xdist < this.width) {
-                if (hitWallLeft) {
-                    player.hitLeft(this.sprite.position.x - player.width + 5);
-                } else {
-                    player.hitBottom(this.sprite.position.y - player.height);
-                }
-                if (hitCrane) {
-                    player.craneFeet = true;
-                }
-            }
-        }
+	var xdist;
+
+	if (hitRoof || hitFloor || hitCrane || hitWallLeft) {
+		if (player.position.y >= this.sprite.position.y - player.height && player.position.y <= this.sprite.position.y + this.sprite.height) {
+			xdist = player.position.x - this.sprite.position.x;
+			if (xdist > 0 && xdist < this.width) {
+				if (hitWallLeft) {
+					player.hitLeft(this.sprite.position.x - player.width + 5);
+				} else {
+					player.hitBottom(this.sprite.position.y - player.height);
+				}
+				if (hitCrane) {
+					player.craneFeet = true;
+				}
+			}
+		}
 
 
-        if (shards && shards.animationTime > 0) {
-            shards.shards.forEach(function(shard) {
-                if (shard.sprite.position.y > this.sprite.position.y - shard.sprite.height / 10) {
-                    xdist = shard.sprite.position.x - this.sprite.position.x;
-                    if (xdist > 0 && xdist < this.width) {
-                        if (hitWallLeft) {
-                            // shard.hitLeft(this.sprite.position.x - shard.sprite.width / 10);
-                        } else {
-                            shard.hitBottom(this.sprite.position.y - shard.sprite.height / 10);
-                        }
-                    }
-                }
-            }, this);
-        }
-    }
+		if (shards && shards.animationTime > 0) {
+			shards.shards.forEach(function(shard) {
+				if (shard.sprite.position.y > this.sprite.position.y - shard.sprite.height / 10) {
+					xdist = shard.sprite.position.x - this.sprite.position.x;
+					if (xdist > 0 && xdist < this.width) {
+						if (hitWallLeft) {
+							// shard.hitLeft(this.sprite.position.x - shard.sprite.width / 10);
+						} else {
+							shard.hitBottom(this.sprite.position.y - shard.sprite.height / 10);
+						}
+					}
+				}
+			}, this);
+		}
+	}
 };
 
 

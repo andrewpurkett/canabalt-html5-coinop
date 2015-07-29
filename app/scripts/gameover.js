@@ -1,60 +1,76 @@
 'use strict';
 
 function GameOver(width, height, distance, player) {
-    PIXI.DisplayObjectContainer.call(this);
-    
-    var gameover = 0.01;
-    var h = 88;
+	PIXI.DisplayObjectContainer.call(this);
 
-    var ggg = new PIXI.Graphics();
+	var gameover = 0.01;
+	var h = 88;
 
-    ggg.beginFill(0xff35353d);
-    ggg.drawRect(0, h+35, width, 64);
+	var ggg = new PIXI.Graphics();
 
-    ggg.beginFill(0xfffffff);
-    ggg.drawRect(0, h+35+64, width, 2);
+	ggg.beginFill(0xff35353d);
+	ggg.drawRect(0, h+35, width, 64);
 
-    ggg.beginFill(0xff35353d);
-    ggg.drawRect(0, height - 30, width, 30);
+	ggg.beginFill(0xfffffff);
+	ggg.drawRect(0, h+35+64, width, 2);
 
-    this.addChild(ggg);
+	ggg.beginFill(0xff35353d);
+	ggg.drawRect(0, height - 30, width, 30);
 
-    var gameover = new PIXI.Sprite.fromFrame('raw/gameover.png');
-    gameover.x = Math.floor((width - 390) / 2);
-    gameover.y = h;
-    
-    this.addChild(gameover);
+	this.addChild(ggg);
 
-    var epitaph = Util.format('You ran {0}m before ', distance) + player.epitaph;
+	var gameover = new PIXI.Sprite.fromFrame('raw/gameover.png');
+	gameover.x = Math.floor((width - 390) / 2);
+	gameover.y = h;
 
-    var epitaphText = new PIXI.Text(epitaph,
-                                    {
-                                        font: '16px Flixel',
-                                        fill: '#ffffff',
-                                        align: 'center',
-                                        wordWrap: true,
-                                        wordWrapWidth: width
-                                    });
+	this.addChild(gameover);
 
-    epitaphText.x = Math.floor((width - 390 + 100) / 2);
-    epitaphText.y = h + 50;
-    epitaphText.width = width;
-    epitaphText.scale.x = 1;
-    epitaphText.scale.y = 1;
-    
-    this.addChild(epitaphText);
+	var epitaph = Util.format('You ran {0}m before ', distance) + player.epitaph;
 
+	var epitaphText = new PIXI.Text(epitaph,
+									{
+										font: '16px Flixel',
+										fill: '#ffffff',
+										align: 'center',
+										wordWrap: true,
+										wordWrapWidth: width
+									});
 
-    var t = new PIXI.Text('Jump to retry your daring escape.',
-                         {
-                             font: '16px Flixel',
-                             fill: '#ffffff',
-                             align: 'right',
-                         });
-    t.x = 0;
-    t.y = height - 27;
-    
-    this.addChild(t);
+	epitaphText.x = Math.floor((width - 390 + 100) / 2);
+	epitaphText.y = h + 50;
+	epitaphText.width = width;
+	epitaphText.scale.x = 1;
+	epitaphText.scale.y = 1;
+
+	this.addChild(epitaphText);
+
+	var creditCountText = new PIXI.Text('Credits: ' + window.credits.count(),
+										{
+											font: '8px Flixel',
+											fill: '#ffffff',
+											align: 'center'
+										});
+
+	creditCountText.x = 15;
+	creditCountText.y = 5;
+	creditCountText.width = width;
+	creditCountText.scale.x = 1;
+	creditCountText.scale.y = 1;
+
+	this.addChild(creditCountText);
+
+	var retryText = (window.credits.ready()) ? 'Press start to retry your daring escape.' : 'Insert coin to retry your daring escape.';
+
+	var t = new PIXI.Text(retryText,
+						 {
+							 font: '16px Flixel',
+							 fill: '#ffffff',
+							 align: 'right',
+						 });
+	t.x = 10;
+	t.y = height - 25;
+
+	this.addChild(t);
 };
 
 GameOver.constructor = GameOver;
