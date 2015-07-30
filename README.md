@@ -10,6 +10,12 @@ Building on the work in [canabalt-html5](https://github.com/eguneys/canabalt-htm
 2. Install bower, grunt, and any other missing dependencies using npm:
 
     `npm install`
+    
+    `sudo npm install bower -g`
+    
+    `npm install grunt -g`
+    
+    `sudo npm install -g grunt-cli`
 
 3. Configure bower to download the needed JS libraries
 
