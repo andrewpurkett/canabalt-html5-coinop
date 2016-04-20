@@ -1,6 +1,6 @@
 canabalt-html5-coinop
 ==============
-Building on the work in [canabalt-html5](https://github.com/eguneys/canabalt-html5), this is a version of canabalt that can run inside an arcade machine, running on a RaspberryPi, and accept coins. A lot of work remains on the project.
+Building on the work in [canabalt-html5](https://github.com/eguneys/canabalt-html5), this is a version of canabalt that can run inside an arcade machine, running on a RaspberryPi, and accept coins.
 
 ## Installation
 1. Install node package manager (npm). On OSX, this is most easily accomplished with brew:
